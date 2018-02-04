@@ -1,10 +1,8 @@
 # Game of Thrones Challange
 
-
-1) Unzip <br>
-2) Download and unzip or clone the url  <br>
-3)  run `npm install`  <br>
-4)  run `npm start`  <br>
+1) Download and unzip or clone the url  <br>
+2)  run `npm install`  <br>
+3)  run `npm start`  <br>
    OR  <br>
 4) run `npm i -g gulp` <br>
 4.1) run `gulp` <br>
