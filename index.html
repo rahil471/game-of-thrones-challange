@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en" ng-app="toppr">
+  <head>
+    <meta charset="utf-8">
+    <title>Toppr- Game Of Thrones</title>
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  </head>
+  <body>
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">Game Of Thrones <small>The real winter is comming, April 2019</small></a> 
+        </div>
+        </div><!-- /.container-fluid -->
+    </nav>
+	<div class="container" ng-controller="gotCtrl as vm">
+        <div class="row">
+            <div class="col-md-6">
+                 <h2>Stats</h2>
+                <div class="col-md-12" style="background: rgb(238, 238, 238) none repeat scroll 0% 0%; border-radius: 10px;margin-bottom:5px">
+                    <h3>Most Active</h3>
+                    <p> <b>Attacker King</b> - {{vm.stats.most_active.attacker_king}}</p>
+                    <p> <b>Defender King</b> - {{vm.stats.most_active.defender_king}}</p>
+                    <p> <b>Region</b> - {{vm.stats.most_active.region}}</p>
+                </div>
+                <div class="col-md-12" style="background: rgb(238, 238, 238) none repeat scroll 0% 0%; border-radius: 10px;margin-bottom:5px">
+                    <h3>Attacker Outcome</h3>
+                    <p> <b>Win</b> - {{vm.stats.attacker_outcome.win}}</p>
+                    <p> <b>Loss</b> - {{vm.stats.attacker_outcome.loss}}</p>
+                    
+                </div>
+
+                <div class="col-md-12" style="background: rgb(238, 238, 238) none repeat scroll 0% 0%; border-radius: 10px;margin-bottom:5px">
+                    <h3>Battle Type</h3>
+                    <ul><li ng-repeat="type in vm.stats.battle_type">{{type}}</li></ul>
+                    
+                </div>
+                <div class="col-md-12" style="background: rgb(238, 238, 238) none repeat scroll 0% 0%; border-radius: 10px;margin-bottom:5px">
+                    <h3>Defender Size</h3>
+                     <p> <b>Average</b> - {{vm.stats.defender_size.avg | number : 2}}</p>
+                        <p> <b>Min</b> - {{vm.stats.defender_size.min}}</p>
+                        <p> <b>Max</b> - {{vm.stats.defender_size.max}}</p>
+                </div>     
+            </div>
+            <div class="col-md-6">
+                <h2>Battles</h2>
+                <ul>
+                    <li ng-repeat="battle in vm.battles">{{battle}}</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.0/angular.js"></script>
+    <script>
+        angular.module('toppr', [])
+        .controller('gotCtrl',['$http', function($http){
+            var vm = this;
+            vm.battles = [];
+            vm.stats = {};
+            $http.get('http://localhost:3000/battle/locations').then(function(resp){
+                if(!resp.data){
+                    return console.log('some thing webt wrong');
+                }
+                vm.battles = resp.data;
+            });
+
+            $http.get('http://localhost:3000/battle/stats').then(function(resp){
+                if(!resp.data){
+                    return console.log('some thing webt wrong');
+                }
+                vm.stats = resp.data;
+            });
+        }])
+    </script>
+  </body>
+</html>
