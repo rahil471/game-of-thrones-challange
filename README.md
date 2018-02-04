@@ -8,6 +8,11 @@
 4.1) run `gulp` <br>
 5) The app should be up and running on `http://localhost:3000` <br>
 
+## Note
+MongoDb should be running on your system and data should be uploaded to...
+- DB name `instarem`
+- Collection name `battle`
+
 ## UI
 Have put together a basic UI to get an overview at `http://localhost:3000`
 
