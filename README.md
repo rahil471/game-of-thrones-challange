@@ -14,21 +14,21 @@ Have put together a basic UI to get an overview at `http://localhost:3000`
 ## APIs
 
 ### Get Locations
-- URL - /battle/locations (GET)
+- URL - `/battle/locations` (GET)
 - Returns list of distinct battle locations
 
 ### Get Battle Count
-- URL - /battle/count (GET)
+- URL - `/battle/count` (GET)
 - Returns total no. of battles.
 
 ### Search
-- URL - /battle/search (GET)
+- URL - `/battle/search` (GET)
 - Generic search allows you to search with any attribute.
 - king = `attacker_king` or `defender_king` (rest of the attributes have a one to one mapping)
-- Eg: `/search?king=Robb Stark&location=Golden Tooth&battle_type=pitched battle`
+- Eg: `/battle/search?king=Robb Stark&location=Golden Tooth&battle_type=pitched battle`
 
 ### Get Stats
-- URL - /battle/stats (GET)
+- URL - `/battle/stats` (GET)
 - Returns Battle stats.
 - Response
 ```
